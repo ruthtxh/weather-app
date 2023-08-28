@@ -63,7 +63,7 @@ function App() {
 
       <SectionWrapper title="Search History">
         {historyList.length === 0 && <div> No Record</div >}
-        {historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} />))}
+        {historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} />))}
       </SectionWrapper>
     </>
   )
