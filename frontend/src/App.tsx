@@ -2,7 +2,13 @@ import './App.css'
 import { getWeatherData, WeatherData } from './services/api'
 import SectionWrapper from './components/SectionWrapper';
 import SearchForm from './components/SearchForm';
+import { HistoryItem } from './components/HistoryItem';
 import { useState } from 'react'
+
+export type HistoryData = {
+  id: string;
+  time: string;
+} & SearchData;
 
 export type SearchData = {
   city: string;
@@ -13,7 +19,7 @@ function App() {
   const [result, setResult] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Boolean>(false);
-  const [historyList, setHistoryList] = useState<[]>([]);
+  const [historyList, setHistoryList] = useState<HistoryData[]>([]);
 
   const handleNewSearch = async ({ city, country }: SearchData) => {
     setIsLoading(true);
@@ -24,11 +30,21 @@ function App() {
     }
     else setIsError(true);
     setIsLoading(false);
+    return data;
+  }
+  const addToHistory = (data: HistoryData) => {
+    setHistoryList([data, ...historyList]);
   }
 
   const onSearch = async ({ ...data }: SearchData) => {
-    console.log(data);
-    await handleNewSearch(data);
+    const result = await handleNewSearch(data);
+    if (data !== null)
+      addToHistory({
+        id: crypto.randomUUID(),
+        time: new Date().toString(),
+        city: result!.city,
+        country: result!.country
+      })
   }
   return (
     <>
@@ -47,6 +63,7 @@ function App() {
 
       <SectionWrapper title="Search History">
         {historyList.length === 0 && <div> No Record</div >}
+        {historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} />))}
       </SectionWrapper>
     </>
   )
