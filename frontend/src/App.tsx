@@ -4,10 +4,11 @@ import SectionWrapper from './components/SectionWrapper';
 import SearchForm from './components/SearchForm';
 import { HistoryItem } from './components/HistoryItem';
 import { useState } from 'react'
+import { formatDateTime, formatTemperature } from './utils/formatting';
 
 export type HistoryData = {
   id: string;
-  time: string;
+  time: Date;
 } & SearchData;
 
 export type SearchData = {
@@ -41,7 +42,7 @@ function App() {
     if (data !== null)
       addToHistory({
         id: crypto.randomUUID(),
-        time: new Date().toString(),
+        time: new Date(),
         city: result!.city,
         country: result!.country
       })
@@ -52,11 +53,11 @@ function App() {
         <SearchForm onSubmit={onSearch} />
         {result?.city}
         {result?.country}
-        {result?.main}
-        {result?.description}
-        {result?.temp}
-        {result?.humidity}
-        {result?.dt}
+        {result?.main}<br />
+        Description: {result?.description}<br />
+        Temperature: {formatTemperature (result?.temp!)}<br />
+        Humidity: {result?.humidity}<br />
+        Time: {formatDateTime(result?.dt!)}<br />
         {isLoading && <div>Loading</div >}
         {isError && <div> Not found</div >}
       </SectionWrapper>
