@@ -2,9 +2,9 @@ import './App.css'
 import { getWeatherData, WeatherData } from './services/api'
 import SectionWrapper from './components/SectionWrapper';
 import SearchForm from './components/SearchForm';
+import ResultCard from './components/ResultCard'
 import { HistoryItem } from './components/HistoryItem';
 import { useState } from 'react'
-import { formatDateTime, formatTemperature } from './utils/formatting';
 
 export type HistoryData = {
   id: string;
@@ -51,19 +51,13 @@ function App() {
     <>
       <SectionWrapper title="Today's Weather">
         <SearchForm onSubmit={onSearch} />
-        {result?.city}
-        {result?.country}
-        {result?.main}<br />
-        Description: {result?.description}<br />
-        Temperature: {formatTemperature (result?.temp!)}<br />
-        Humidity: {result?.humidity}<br />
-        Time: {formatDateTime(result?.dt!)}<br />
+        {result !== null && <ResultCard result={result} />}
         {isLoading && <div>Loading</div >}
-        {isError && <div> Not found</div >}
+        {isError && <div>Not found</div >}
       </SectionWrapper>
 
       <SectionWrapper title="Search History">
-        {historyList.length === 0 && <div> No Record</div >}
+        {historyList.length === 0 && <div>No Record</div >}
         {historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} />))}
       </SectionWrapper>
     </>
