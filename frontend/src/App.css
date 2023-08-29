@@ -7,6 +7,10 @@ h3 {
     margin: 0px;
 }
 
+td {
+    vertical-align: top;
+}
+
 /* Section wrapper */
 .title {
     font-weight: bolder;
@@ -21,40 +25,40 @@ hr {
 }
 
 /* Today's weather section */
-.form-inline {  
+.form-inline {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-  }
-  
-  .form-inline label {
+}
+
+.form-inline label {
     margin: 5px 10px 5px 0;
-  }
-  
-  .form-inline input {
+}
+
+.form-inline input {
     vertical-align: middle;
     margin: 5px 10px 5px 0;
-  }
-  
-  .form-inline button {
+}
+
+.form-inline button {
     cursor: pointer;
     margin-right: 5px;
-  }
+}
 
-  @media (max-width: 800px) {
+@media (max-width: 800px) {
     .form-inline input {
-      margin: 10px 0;
+        margin: 10px 0;
     }
-    
+
     .form-inline button {
         margin: 0;
-      }
-      
-    .form-inline {
-      flex-direction: column;
-      align-items: stretch;
     }
-  }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
 
 /* Not found div */
 .not-found {
