@@ -22,7 +22,7 @@ function App() {
   const [result, setResult] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Boolean>(false);
-  const [historyList, setHistoryList] = useLocalStorage<HistoryData[]>("HISTORYLIST",[]);
+  const [historyList, setHistoryList] = useLocalStorage<HistoryData[]>("HISTORYLIST", []);
 
   const handleNewSearch = async ({ city, country }: SearchData) => {
     setIsLoading(true);
@@ -57,7 +57,7 @@ function App() {
       </SectionWrapper>
 
       <SectionWrapper title="Search History">
-        {historyList? historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch} />)) :
+        {historyList.length > 0 ? historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch} />)) :
           <h4 className='no-record'>No Record</h4>}
       </SectionWrapper>
     </>
