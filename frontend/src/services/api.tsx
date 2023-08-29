@@ -51,6 +51,7 @@ export interface WeatherData {
     "temp": number,
     "humidity": number,
     "dt": number,
+    "icon": string
 }
 
 type GetWeatherSuccessResponse = {
@@ -80,6 +81,7 @@ export const getWeatherData = async (
             temp: data.main.temp,
             humidity: data.main.humidity,
             dt: data.dt,
+            icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         };
         return {
             data: transformedData,

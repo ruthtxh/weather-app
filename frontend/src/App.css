@@ -25,6 +25,7 @@ hr {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    margin: 10px 0px;
 }
 
 .form-inline label {
@@ -70,8 +71,15 @@ hr {
 }
 
 /* Card */
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+
 .card {
+    border-radius: 1em;
     padding: 16px;
+    background-color: #d0d0d0;
 }
 
 .card td {
@@ -81,6 +89,10 @@ hr {
 
 .card td:nth-child(1) {
     color: #444444;
+}
+
+.card tr:nth-child(2) td {
+    vertical-align: middle;
 }
 
 .card h1 {
