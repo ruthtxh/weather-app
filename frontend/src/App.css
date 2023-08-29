@@ -2,15 +2,6 @@ body {
     font-family: sans-serif;
 }
 
-h3 {
-    padding: 0px;
-    margin: 0px;
-}
-
-td {
-    vertical-align: top;
-}
-
 /* Section wrapper */
 .title {
     font-weight: bolder;
@@ -18,6 +9,11 @@ td {
 
 .section {
     margin-bottom: 50px;
+}
+
+.section h3 {
+    padding: 0px;
+    margin: 0px;
 }
 
 hr {
@@ -76,6 +72,20 @@ hr {
 /* Card */
 .card {
     padding: 16px;
+}
+
+.card td {
+    vertical-align: top;
+    padding-right: 5px;
+}
+
+.card td:nth-child(1) {
+    color: #444444;
+}
+
+.card h1 {
+    margin: 0px 0px 10px 0px;
+    color: black;
 }
 
 /* History section*/

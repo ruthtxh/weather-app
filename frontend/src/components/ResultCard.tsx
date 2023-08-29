@@ -8,9 +8,15 @@ type ResultCardProps = {
 export default function ResultCard({ result }: ResultCardProps) {
     return (
         <div className="card">
-            <p>{result.city}, {result.country}</p>
-            <h1><b>{result.main}</b></h1>
             <table>
+                <tr>
+                    <td>{result.city}, {result.country}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h1><b>{result.main}</b></h1> </td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>Description: </td>
                     <td>{result.description}</td>
