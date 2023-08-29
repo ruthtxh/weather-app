@@ -6,10 +6,11 @@ import ResultCard from './components/ResultCard'
 import NotFound from './components/NotFound';
 import { HistoryItem } from './components/HistoryItem';
 import { useState } from 'react'
+import { useLocalStorage } from "./hooks/useLocalStorage"
 
 export type HistoryData = {
   id: string;
-  time: Date;
+  time: string;
 } & SearchData;
 
 export type SearchData = {
@@ -21,7 +22,7 @@ function App() {
   const [result, setResult] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [isError, setIsError] = useState<Boolean>(false);
-  const [historyList, setHistoryList] = useState<HistoryData[]>([]);
+  const [historyList, setHistoryList] = useLocalStorage<HistoryData[]>("HISTORYLIST",[]);
 
   const handleNewSearch = async ({ city, country }: SearchData) => {
     setIsLoading(true);
@@ -40,12 +41,12 @@ function App() {
     if (data !== null)
       setHistoryList([{
         id: crypto.randomUUID(),
-        time: new Date(),
+        time: new Date().toTimeString(),
         city: result!.city,
         country: result!.country
       }, ...historyList]);
   }
-
+console.log(historyList)
   return (
     <>
       <SectionWrapper title="Today's Weather">
@@ -57,7 +58,7 @@ function App() {
       </SectionWrapper>
 
       <SectionWrapper title="Search History">
-        {historyList.length > 0 ? historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch} />)) :
+        {historyList? historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch} />)) :
           <h4 className='no-record'>No Record</h4>}
       </SectionWrapper>
     </>

@@ -7,7 +7,7 @@ type HistoryItemProps = {
     id: string;
     city: string;
     country: string;
-    time: Date;
+    time: string;
     historyList: HistoryData[]
     setHistoryList: (arr: HistoryData[]) => void
     onSubmit: (data: SearchData) => void
@@ -21,15 +21,16 @@ export function HistoryItem({ index, id, city, country, time, historyList, setHi
             country: search.country
         })
     }
-    return (<><div className="history-item">
-
-        <span>{index + 1}. {city}, {country}</span>
-        <div>
-            <span>{formatTime(time)}</span>
-            <IconButton onClick={(e) => handleSubmit(e, { city, country })}><i className="fa fa-search"></i></IconButton>
-            <IconButton onClick={() => setHistoryList(historyList.filter(item => item.id !== id))}><i className="fa fa-trash"></i></IconButton>
-        </div>
-    </div >
+    console.log(time)
+    return (<div>
+        <div className="history-item">
+            <span>{index + 1}. {city}, {country}</span>
+            <div>
+                <span>{formatTime(time)}</span>
+                <IconButton onClick={(e) => handleSubmit(e, { city, country })}><i className="fa fa-search"></i></IconButton>
+                <IconButton onClick={() => setHistoryList(historyList.filter(item => item.id !== id))}><i className="fa fa-trash"></i></IconButton>
+            </div>
+        </div >
         <hr />
-    </>)
+    </div>)
 }

@@ -27,6 +27,7 @@ export function formatDateTime(number: number) {
     return `${dateString} ${timeString}`;
 }
 
-export function formatTime(date: Date) {
-    return `${padZero(getTwelveHour(date.getHours()))}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}  ${getAmPm(date.getHours())}`
+export function formatTime(time: string) {
+    let arr = time.split(" ")[0].split(":");
+    return `${padZero(getTwelveHour(Number(arr[0])))}:${padZero(Number(arr[1]))}:${padZero(Number(arr[2]))} ${getAmPm(Number(arr[0]))}`
 }
