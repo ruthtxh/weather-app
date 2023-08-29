@@ -1,4 +1,4 @@
-const apiKey = import.meta.env.VITE_SOME_KEY;
+const apiKey = import.meta.env.VITE_OPENWEATHERAPI_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 interface WeatherDataDTO {
