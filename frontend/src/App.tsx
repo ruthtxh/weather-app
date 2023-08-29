@@ -46,7 +46,6 @@ function App() {
         country: result!.country
       }, ...historyList]);
   }
-console.log(historyList)
   return (
     <>
       <SectionWrapper title="Today's Weather">

@@ -21,7 +21,6 @@ export function HistoryItem({ index, id, city, country, time, historyList, setHi
             country: search.country
         })
     }
-    console.log(time)
     return (<div>
         <div className="history-item">
             <span>{index + 1}. {city}, {country}</span>
