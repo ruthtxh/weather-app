@@ -16,7 +16,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
         })
     }
     return (<>
-        <form>
+        <form className="form-inline">
             <label htmlFor="city">City:</label>
             <input type="text" id="city" name="city" ref={cityRef} />
             <label htmlFor="country">Country:</label>
