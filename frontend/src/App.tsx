@@ -3,6 +3,7 @@ import { getWeatherData, WeatherData } from './services/api'
 import SectionWrapper from './components/SectionWrapper';
 import SearchForm from './components/SearchForm';
 import ResultCard from './components/ResultCard'
+import NotFound from './components/NotFound';
 import { HistoryItem } from './components/HistoryItem';
 import { useState } from 'react'
 
@@ -33,32 +34,31 @@ function App() {
     setIsLoading(false);
     return data;
   }
-  const addToHistory = (data: HistoryData) => {
-    setHistoryList([data, ...historyList]);
-  }
 
   const onSearch = async ({ ...data }: SearchData) => {
     const result = await handleNewSearch(data);
     if (data !== null)
-      addToHistory({
+      setHistoryList([{
         id: crypto.randomUUID(),
         time: new Date(),
         city: result!.city,
         country: result!.country
-      })
+      }, ...historyList]);
   }
+
   return (
     <>
       <SectionWrapper title="Today's Weather">
         <SearchForm onSubmit={onSearch} />
-        {result !== null && <ResultCard result={result} />}
-        {isLoading && <div>Loading</div >}
-        {isError && <div>Not found</div >}
+        {isLoading ? <div>Loading</div >
+          : isError ? <NotFound />
+            : result ? <ResultCard result={result!} />
+              : null}
       </SectionWrapper>
 
       <SectionWrapper title="Search History">
-        {historyList.length === 0 && <div>No Record</div >}
-        {historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch}/>))}
+        {historyList.length > 0 ? historyList.map((item, index) => (<HistoryItem key={item.id} index={index} {...item} historyList={historyList} setHistoryList={setHistoryList} onSubmit={onSearch} />)) :
+          <h4 className='no-record'>No Record</h4>}
       </SectionWrapper>
     </>
   )

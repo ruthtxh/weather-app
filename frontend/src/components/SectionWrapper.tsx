@@ -6,8 +6,9 @@ type SectionWrapperProps = {
 }
 
 export default function SectionWrapper({ title, children }: SectionWrapperProps) {
-    return (<>
-        <h2>{title}</h2>
+    return (<div className="section">
+        <h3 className="title">{title}</h3>
+        <hr />
         {children}
-    </>)
+    </div>)
 }

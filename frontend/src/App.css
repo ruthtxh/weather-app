@@ -1,0 +1,72 @@
+body {
+    font-family: sans-serif;
+}
+
+h3 {
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Section wrapper */
+.title {
+    font-weight: bolder;
+}
+
+.section {
+    margin-bottom: 50px;
+}
+
+hr{
+    margin-top: 0;
+}
+
+/* Today's weather section */
+input[type=text] {
+    margin: 8px 8px;
+    display: inline-block;
+}
+
+button {
+    margin: 8px 8px;
+    display: inline-block;
+}
+
+label {
+    font-weight: 700;
+}
+
+/* Not found div */
+.not-found {
+    background-color: rgb(252, 219, 219);
+    border: solid 2px red;
+    padding: 3px;
+}
+
+/* No record div */
+.no-record {
+    text-align: center;
+    color:#8d8d8d;
+}
+
+/* Card */
+.card {
+    padding: 16px;
+}
+
+/* History section*/
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.round-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+}
+
+.round-button:hover {
+    background-color: #cccccc;
+}
